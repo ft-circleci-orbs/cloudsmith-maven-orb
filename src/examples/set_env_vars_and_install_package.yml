@@ -1,0 +1,22 @@
+description: >
+  Install a package from Cloudsmith.
+usage:
+  version: 2.1
+  orbs:
+    cloudsmith-npm: ft-circleci-orbs/cloudsmith-npm@1.1
+  jobs:
+    build:
+      docker:
+        - image: cimg/node:20.12
+      steps:
+        - checkout
+        - cloudsmith-npm/set_env_vars_for_npm:
+            repository: "your-repository-id"
+        - run:
+            name: Install specific package using --registry flag and environment variable
+            command: npm install your-package==0.0.0 --registry="$CLOUDSMITH_NPM_REGISTRY_WITH_AUTH_CONFIG"
+
+  workflows:
+    main:
+      jobs:
+        - build
