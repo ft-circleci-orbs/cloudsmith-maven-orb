@@ -1,6 +1,5 @@
 description:
-  Generate temporary Cloudsmith credentials using OIDC and construct a .npmrc file a specific Cloudsmith
-  repository and service account. On completion the command sets the npm registry to include Cloudsmith authentication credentials generated using OIDC.
+  Generate temporary Cloudsmith credentials using OIDC
 parameters:
   repository:
     description: The identity/slug of the Cloudsmith repository
@@ -12,11 +11,11 @@ steps:
   - cloudsmith-oidc/authenticate_with_oidc
   - run:
       name: Cloudsmith - Set environment variables
-      command: <<include(scripts/set_env_vars_for_npm.sh)>>
+      command: <<include(scripts/set_env_vars_for_maven.sh)>>
       environment:
         CLOUDSMITH_REPOSITORY: <<parameters.repository>>
   - run:
-      name: Cloudsmith - Configure cloudsmith npm registry
-      command: <<include(scripts/configure_npm.sh)>>
+      name: Cloudsmith - Configure cloudsmith maven
+      command: <<include(scripts/configure_maven.sh)>>
       environment:
         CLOUDSMITH_REPOSITORY: <<parameters.repository>>
