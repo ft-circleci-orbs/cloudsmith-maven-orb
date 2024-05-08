@@ -2,9 +2,9 @@ version: 2.1
 orbs:
   # Your orb will be automatically injected here during the pipeline.
   # Reference your orb's jobs and commands below as they will exist when built.
-  orb-tools: circleci/orb-tools@12.1
+  orb-tools: circleci/orb-tools@12.0
   # The orb definition is intentionally not included here. It will be injected into the pipeline.
-  cloudsmith-maven: {}
+  <orb-name>: {}
 
 # Use this tag to ensure test jobs always run,
 # even though the downstream publish job will only run on release tags.
@@ -20,156 +20,32 @@ release-filters: &release-filters
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
 jobs:
-
-  test-set_env_vars_for_maven:
+  # Create jobs to test the commands of your orbs.
+  # You may want to add additional validation steps to ensure the commands are working as expected.
+  command-test:
     docker:
-      - image: cimg/openjdk:21.0.2
-    resource_class: small
+      - image: cimg/base:current
     steps:
       - checkout
-      - cloudsmith-maven/set_env_vars_for_maven:
-          repository: "circleci-orb-testing"
-      - run:
-          name: Check that maven environment variables have been set
-          command: |
-            # To complete this part
-            pass=true
-
-#   test-set_env_vars_for_maven_install_package:
-#     docker:
-#       - image: cimg/openjdk:21.0.2
-#     resource_class: small
-#     steps:
-#       - checkout
-#       - cloudsmith-maven/set_env_vars_for_maven:
-#           repository: "circleci-orb-testing"
-#       - run:
-#           name: Install a test-set_env_vars_for_maven package
-#           command: npm install simple-npm-package --registry=$CLOUDSMITH_NPM_REGISTRY_WITH_AUTH_CONFIG
-
-#   test-configure_npm:
-#     docker:
-#       - image: cimg/node:20.12
-#     resource_class: small
-#     steps:
-#       - checkout
-#       - cloudsmith-npm/configure_npm:
-#           repository: "circleci-orb-testing"
-#       - run:
-#           name: Assert .npmrc file has been created
-#           command: |
-#             if [ ! -f ~/.npmrc ]
-#             then
-#               echo "Test failed: .npmrc file has not been created."
-#               exit 1
-#             fi
-#             if ! grep -q "registry=https://npm.${CLOUDSMITH_DOWNLOADS_DOMAIN}" ~/.npmrc
-#             then
-#               echo "Test failed: .npmrc file does not contain the correct registry URL."
-#               exit 1
-#             fi
-#             if ! grep -q "authToken=" ~/.npmrc
-#             then
-#               echo "Test failed: .npmrc file does not contain an authToken."
-#               exit 1
-#             fi
-#             echo "All tests passed."
-
-#   test-configure_npm_install_package_example:
-#     docker:
-#       - image: cimg/node:20.12
-#     steps:
-#       - checkout
-#       - cloudsmith-npm/configure_npm:
-#           repository: "circleci-orb-testing"
-#       - run: npm install simple-npm-package
-
-#   test-configure_npm_install_package_json_example:
-#     docker:
-#       - image: cimg/node:20.12
-#     steps:
-#       - checkout
-#       - run:
-#           name: Create package.json
-#           command: |
-#             echo '{
-#               "dependencies": {
-#                 "simple-npm-package": "^1.0.0"
-#               }
-#             }' > package.json
-#       - cloudsmith-npm/configure_npm:
-#           repository: "circleci-orb-testing"
-#       - run: npm install
-
-#   test-upload_package_using_cli:
-#     docker:
-#       - image: cimg/node:20.12
-#     resource_class: small
-#     steps:
-#       - checkout
-#       - run:
-#           name: Build source distribution
-#           command: npm pack
-#           working_directory: .circleci/simple-npm-package-test
-#       - cloudsmith-npm/upload_package_using_cli:
-#           repository: "circleci-orb-testing"
-#           dist_dir: .circleci/simple-npm-package-test
-
-#   test-upload_package_native:
-#     docker:
-#       - image: cimg/node:20.12
-#     steps:
-#       - checkout
-#       - cloudsmith-npm/configure_npm:
-#           repository: "circleci-orb-testing"
-#       - run:
-#           name: publish package
-#           command: npm publish
-#           working_directory: .circleci/simple-npm-package-test
-
-# workflows:
-#   test-deploy:
-#     jobs:
-#       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
-#       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
-#       - test-set_env_vars_for_npm:
-#           context: circleci-orb-publishing
-#           filters: *filters
-#       - test-configure_npm:
-#           context: circleci-orb-publishing
-#           filters: *filters
-#       - test-configure_npm_install_package_example:
-#           context: circleci-orb-publishing
-#           filters: *filters
-#       - test-configure_npm_install_package_json_example:
-#           context: circleci-orb-publishing
-#           filters: *filters
-#       - test-set_env_vars_for_npm_install_package:
-#           context: circleci-orb-publishing
-#           filters: *filters
-#       - test-upload_package_using_cli:
-#           context: circleci-orb-publishing
-#           filters: *filters
-#       - test-upload_package_native:
-#           context: circleci-orb-publishing
-#           filters: *filters
-#       # The orb must be re-packed for publishing, and saved to the workspace.
-#       - orb-tools/pack:
-#           filters: *release-filters
-#       - orb-tools/publish:
-#           orb_name: ft-circleci-orbs/cloudsmith-npm
-#           vcs_type: << pipeline.project.type >>
-#           pub_type: production
-#           # Ensure this job requires all test jobs and the pack job.
-#           requires:
-#             - orb-tools/pack
-#             - test-configure_npm
-#             - test-configure_npm_install_package_example
-#             - test-configure_npm_install_package_json_example
-#             - test-set_env_vars_for_npm
-#             - test-set_env_vars_for_npm_install_package
-#             - test-upload_package_using_cli
-#             - test-upload_package_native
-#           # Use a context to hold your publishing token.
-#           context: circleci-orb-publishing
-#           filters: *release-filters
+      # Run your orb's commands to validate them.
+      - <orb-name>/greet
+workflows:
+  test-deploy:
+    jobs:
+      # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
+      # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
+      - command-test:
+          filters: *filters
+      # The orb must be re-packed for publishing, and saved to the workspace.
+      - orb-tools/pack:
+          filters: *release-filters
+      - orb-tools/publish:
+          orb_name: <namespace>/<orb-name>
+          vcs_type: << pipeline.project.type >>
+          pub_type: production
+          # Ensure this job requires all test jobs and the pack job.
+          requires:
+            - orb-tools/pack
+            - command-test
+          context: <publishing-context>
+          filters: *release-filters
