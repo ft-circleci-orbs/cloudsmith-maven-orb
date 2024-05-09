@@ -15,4 +15,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>financial-times-financial-times-internal-releases</id>
+      <url>https://packages.ft.com/${CLOUDSMITH_OIDC_TOKEN}/financial-times-internal-releases/maven/</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository> 
+  </repositories>
 </project>
