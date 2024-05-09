@@ -5,18 +5,12 @@
 
 set +e
 
-if [ -z "$CLOUDSMITH_NPM_REGISTRY" ]
+if [ -z "$CLOUDSMITH_MAVEN_REGISTRY" ]
 then
-  echo "Unable to configure NPM. Env var CLOUDSMITH_NPM_REGISTRY is not defined. Please run the set_env_vars_for_npm command first."
-  exit 1
-fi
-if [ -z "$CLOUDSMITH_NPM_AUTH_CONFIG" ]
-then
-  echo "Unable to configure NPM. Env var CLOUDSMITH_NPM_AUTH_CONFIG is not defined. Please run the set_env_vars_for_npm command first."
+  echo "Unable to configure MAVEN. Env var CLOUDSMITH_MAVEN_REGISTRY is not defined. Please run the set_env_vars_for_maven command first."
   exit 1
 fi
 
-npm config set registry="$CLOUDSMITH_NPM_REGISTRY"
-npm config set "$CLOUDSMITH_NPM_AUTH_CONFIG"
+maven config set registry="$CLOUDSMITH_MAVEN_REGISTRY"
 
-echo "NPM has been configured to use Cloudsmith registry with $CLOUDSMITH_NPM_REGISTRY."
+echo "MAVEN has been configured to use Cloudsmith registry with $CLOUDSMITH_MAVEN_REGISTRY."
