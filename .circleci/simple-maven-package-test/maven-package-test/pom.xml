@@ -17,7 +17,7 @@
   </dependencies>
   <repositories>
     <repository>
-      <id>financial-times-financial-times-internal-releases</id>
+      <id>financial-times-${CLOUDSMITH_REPOSITORY}</id>
       <url>https://packages.ft.com/${CLOUDSMITH_OIDC_TOKEN}/financial-times-internal-releases/maven/</url>
       <releases>
         <enabled>true</enabled>
