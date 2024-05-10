@@ -45,11 +45,29 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - cloudsmith-maven/configure_maven:
+      - cloudsmith-maven/set_env_vars_for_maven:
           repository: "circleci-orb-testing"
       - run:
           name: Install package dependencies
           command: mvn install
+
+  test-configure_maven:
+    docker:
+      - image: cimg/openjdk:21.0.2
+    resource_class: small
+    steps:
+      - checkout
+      - cloudsmith-maven/configure_maven:
+          repository: "circleci-orb-testing"
+      - run:
+          name: Check that maven environment variables have been set
+          command: |
+            if [ -z $CLOUDSMITH_MAVEN_REGISTRY ]
+            then
+              echo "Test failed: CLOUDSMITH_MAVEN_REGISTRY has not been set."
+              exit 1
+            fi
+            echo "All tests passed."
 
 workflows:
   test-deploy:
@@ -60,6 +78,9 @@ workflows:
           context: circleci-orb-publishing
           filters: *filters
       - test-set_env_vars_for_maven_install_package:
+          context: circleci-orb-publishing
+          filters: *filters
+      - test-configure_maven:
           context: circleci-orb-publishing
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
@@ -74,6 +95,7 @@ workflows:
             - orb-tools/pack
             - test-set_env_vars_for_maven
             - test-set_env_vars_for_maven_install_package
+            - test-configure_maven
           # Use a context to hold your publishing token.
           context: circleci-orb-publishing
           filters: *release-filters
