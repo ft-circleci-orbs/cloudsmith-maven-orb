@@ -17,9 +17,9 @@ then
   exit 1
 fi
 
-if [ -z "$CLOUDSMITH_OIDC_TOKEN" ]
+if [ -z "$CLOUDSMITH_MAVEN_TOKEN" ]
 then
-  echo "Unable to configure MAVEN. Env var CLOUDSMITH_OIDC_TOKEN is not defined. Please run the set_env_vars_for_maven command first."
+  echo "Unable to configure MAVEN. Env var CLOUDSMITH_MAVEN_TOKEN is not defined. Please run the set_env_vars_for_maven command first."
   exit 1
 fi
 
