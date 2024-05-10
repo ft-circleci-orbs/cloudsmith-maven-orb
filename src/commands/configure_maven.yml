@@ -19,8 +19,4 @@ steps:
       command: <<include(scripts/configure_maven.sh)>>
       environment:
         CLOUDSMITH_REPOSITORY: <<parameters.repository>>
-  - run:
-      name: Cloudsmith - Configure settings.xml file for maven
-      command: <<include(scripts/generate_settings_file.sh)>>
-      environment:
-        CLOUDSMITH_REPOSITORY: <<parameters.repository>>
+
