@@ -24,7 +24,7 @@
   <repositories>
     <repository>
       <id>financial-times-${CLOUDSMITH_REPOSITORY}</id>
-      <url>https://packages.ft.com/${CLOUDSMITH_OIDC_TOKEN}/financial-times-internal-releases/maven/</url>
+      <url>${CLOUDSMITH_MAVEN_REGISTRY}</url>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
@@ -33,6 +33,6 @@
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
       </snapshots>
-    </repository> 
+    </repository>
   </repositories>
 </project>
