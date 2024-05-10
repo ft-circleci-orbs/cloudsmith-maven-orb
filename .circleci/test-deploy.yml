@@ -49,7 +49,7 @@ jobs:
           repository: "circleci-orb-testing"
       - run:
           name: cd into maven project directory
-          command: cd simple-maven-project
+          command: cd ~/project/.circleci/simple-maven-package-test
       - run:
           name: Install package dependencies
           command: mvn install
