@@ -59,7 +59,6 @@ workflows:
       - test-configure_maven:
           context: circleci-orb-publishing
           filters: *filters
-      
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters

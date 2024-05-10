@@ -4,4 +4,3 @@ steps:
   - run:
       name: Cloudsmith - Configure settings.xml file for maven
       command: <<include(scripts/generate_settings_file.sh)>>
- 
