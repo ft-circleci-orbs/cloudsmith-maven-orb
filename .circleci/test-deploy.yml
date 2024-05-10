@@ -48,11 +48,24 @@ jobs:
       - cloudsmith-maven/set_env_vars_for_maven:
           repository: "circleci-orb-testing"
       - run:
-          name: cd into maven project directory
-          command: cd ~/project/.circleci/simple-maven-package-test
-      - run:
-          name: Install package dependencies
-          command: mvn install
+          name: Check that maven environment variables have been set
+          command: |
+            if [ -z $CLOUDSMITH_MAVEN_REGISTRY ]
+            then
+              echo "Test failed: CLOUDSMITH_MAVEN_REGISTRY has not been set."
+              exit 1
+            fi
+            if [ -z "$CLOUDSMITH_REPOSITORY" ]
+            then
+              echo "Unable to configure MAVEN. Env var CLOUDSMITH_REPOSITORY is not defined. Please run the set_env_vars_for_maven command first."
+              exit 1
+            fi
+            if [ -z "$CLOUDSMITH_OIDC_TOKEN" ]
+            then
+              echo "Unable to configure MAVEN. Env var CLOUDSMITH_OIDC_TOKEN is not defined. Please run the set_env_vars_for_maven command first."
+              exit 1
+            fi
+            echo "All tests passed."
 
   test-configure_maven:
     docker:
@@ -81,6 +94,9 @@ jobs:
               exit 1
             fi
             echo "All tests passed."
+      - run:
+          name: cd into maven project directory and install package dependencies
+          command: cd ~/project/.circleci/simple-maven-package-test/maven-package-test && mvn install
 
 workflows:
   test-deploy:
