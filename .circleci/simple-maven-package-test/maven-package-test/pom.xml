@@ -23,8 +23,8 @@
   </dependencies>
   <repositories>
     <repository>
-      <id>financial-times-${CLOUDSMITH_REPOSITORY}</id>
-      <url>${CLOUDSMITH_MAVEN_REGISTRY}</url>
+      <id>financial-times-circleci-orb-testing</id>
+      <url>https://packages.ft.com/basic/circleci-orb-testing/maven/</url>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
