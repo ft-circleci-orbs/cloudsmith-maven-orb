@@ -1,7 +1,7 @@
 description:
   Generate temporary Cloudsmith credentials using OIDC and construct an NPM registry URL string for a specific Cloudsmith
-  repository. On completion the command sets the NPM_REGISTRY_URL environment variable for
-  use with npm. The registry url includes Cloudsmith authentication credentials generated using OIDC.
+  repository. On completion the command sets the MAVEN_REGISTRY_URL environment variable for
+  use with maven. The registry url includes Cloudsmith authentication credentials generated using OIDC.
 parameters:
   repository:
     description: The identity/slug of the Cloudsmith repository
