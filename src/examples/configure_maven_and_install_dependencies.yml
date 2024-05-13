@@ -1,0 +1,21 @@
+description: >
+  Configure maven and install dependencies via the Cloudsmith upstream proxy].
+usage:
+  version: 2.1
+  orbs:
+    cloudsmith-maven: ft-circleci-orbs/cloudsmith-maven@1.0
+  jobs:
+    build:
+      docker:
+        - image: cimg/openjdk:21.0.2
+      steps:
+        - checkout
+        - cloudsmith-npm/configure_maven:
+            repository: "your-repository-id"
+        - run:
+          name: cd into maven project directory and install package dependencies
+          command: cd ~/project/.circleci/simple-maven-package-test/maven-package-test && mvn install
+  workflows:
+    main:
+      jobs:
+        - build
