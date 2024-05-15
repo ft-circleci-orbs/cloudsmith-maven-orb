@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  cloudsmith-oidc: ft-circleci-orbs/cloudsmith-oidc@1.0.0
+  cloudsmith-maven: ft-circleci-orbs/cloudsmith-maven@0.0.1
 
 description: |
   Install maven packages from and publish maven packages to Cloudsmith using short-lived OIDC credentials.
