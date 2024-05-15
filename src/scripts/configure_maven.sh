@@ -24,4 +24,4 @@ then
 fi
 
 
-echo "MAVEN has been configured to use Cloudsmith registry with $CLOUDSMITH_MAVEN_REGISTRY."
+echo "MAVEN has been configured to use Cloudsmith registry with $CLOUDSMITH_MAVEN_REPOSITORY."
