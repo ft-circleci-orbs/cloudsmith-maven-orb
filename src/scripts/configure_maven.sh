@@ -22,10 +22,10 @@ echo "MAVEN has been configured to use Cloudsmith repository with $CLOUDSMITH_MA
 
 
 # Check for existence of .m2 & settings.xml and create them if they don't exist
-if [ -d ~/.m2 ]
+if [ -d $HOME/.m2 ]
 then
-  echo "~/.m2 exists"
-  if [ -f ~/.m2/settings.xml ]
+  echo "$HOME/.m2 exists"
+  if [ -f $HOME/.m2/settings.xml ]
   then
     echo "settings.xml exists"
   else
@@ -33,9 +33,9 @@ then
     touch settings.xml
   fi
 else
-  echo "~/.m2 does not exist. Creating ~/.m2/settings.xml"
-  mkdir ~/.m2 && touch ~/.m2/settings.xml
-  cat >> ~/.m2/settings.xml<< EOF
+  echo "$HOME/.m2 does not exist. Creating $HOME/.m2/settings.xml"
+  mkdir $HOME/.m2 && touch $HOME/.m2/settings.xml
+  cat >> $HOME/.m2/settings.xml<< EOF
   <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
