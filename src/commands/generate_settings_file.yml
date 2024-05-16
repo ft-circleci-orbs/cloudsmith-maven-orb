@@ -1,6 +1,0 @@
-description:
-  Generate the settings file for maven, injecting the relevent credentials into it.
-steps:
-  - run:
-      name: Cloudsmith - Configure settings.xml file for maven
-      command: <<include(scripts/generate_settings_file.sh)>>
