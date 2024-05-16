@@ -1,7 +1,7 @@
 #!/bin/bash
 
-shellcheck disable=SC2016
-shellcheck disable=SC2129
+# shellcheck disable=SC2016
+# shellcheck disable=SC2129
 
 
 set +e
@@ -42,9 +42,9 @@ else
                           https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-          <id>\$CLOUDSMITH_ORGANISATION-\$CLOUDSMITH_REPOSITORY</id>
-            <username>\$CLOUDSMITH_SERVICE_ACCOUNT</username>
-            <password>\$CLOUDSMITH_MAVEN_TOKEN</password>
+          <id>\${env.CLOUDSMITH_ORGANISATION}-\${env.CLOUDSMITH_REPOSITORY}</id>
+            <username>\${env.CLOUDSMITH_SERVICE_ACCOUNT}</username>
+            <password>\${env.CLOUDSMITH_MAVEN_TOKEN}</password>
         </server>
     </servers>
   </settings>
