@@ -20,4 +20,3 @@ usage:
     main:
       jobs:
         - build
-
