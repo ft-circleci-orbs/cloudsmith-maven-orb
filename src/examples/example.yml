@@ -1,0 +1,14 @@
+description: >
+  Sample example description.
+# Provide a use-case based example for using this orb.
+# Everything in the `usage` section will be displayed in the orb registry.
+# Comments are not retained.
+usage:
+  version: 2.1
+  orbs:
+    cloudsmith-maven: ft-circleci-orbs/cloudsmith-maven@0.0.1
+  workflows:
+    main:
+      jobs:
+        - build
+
