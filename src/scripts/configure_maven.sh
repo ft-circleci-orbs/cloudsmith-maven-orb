@@ -1,21 +1,10 @@
 #!/bin/bash
 
-# shellcheck disable=SC2016
-# shellcheck disable=SC2129
+shellcheck disable=SC2016
+shellcheck disable=SC2129
+
 
 set +e
-
-if [ -z "$CLOUDSMITH_MAVEN_REGISTRY" ]
-then
-  echo "Unable to configure MAVEN. Env var CLOUDSMITH_MAVEN_REGISTRY is not defined. Please run the set_env_vars_for_maven command first."
-  exit 1
-fi
-
-if [ -z "$CLOUDSMITH_REPOSITORY" ]
-then
-  echo "Unable to configure MAVEN. Env var CLOUDSMITH_REPOSITORY is not defined. Please run the set_env_vars_for_maven command first."
-  exit 1
-fi
 
 if [ -z "$CLOUDSMITH_MAVEN_TOKEN" ]
 then
@@ -23,5 +12,41 @@ then
   exit 1
 fi
 
+if [ -z "$CLOUDSMITH_MAVEN_REPOSITORY" ]
+then
+  echo "Unable to configure MAVEN. Env var CLOUDSMITH_MAVEN_REPOSITORY is not defined. Please run the set_env_vars_for_maven command first."
+  exit 1
+fi
 
-echo "MAVEN has been configured to use Cloudsmith registry with $CLOUDSMITH_MAVEN_REPOSITORY."
+echo "MAVEN has been configured to use Cloudsmith repository with $CLOUDSMITH_MAVEN_REPOSITORY."
+
+
+# Check for existence of .m2 & settings.xml and create them if they don't exist
+if [ -d ~/.m2 ]
+then
+  echo "~/.m2 exists"
+  if [ -f ~/.m2/settings.xml ]
+  then
+    echo "settings.xml exists"
+  else
+    echo "settings.xml does not exist"
+    touch settings.xml
+  fi
+else
+  echo "~/.m2 does not exist. Creating ~/.m2/settings.xml"
+  mkdir ~/.m2 && touch ~/.m2/settings.xml
+  cat >> ~/.m2/settings.xml<< EOF
+  <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+        <server>
+          <id>\$CLOUDSMITH_ORGANISATION-\$CLOUDSMITH_REPOSITORY</id>
+            <username>\$CLOUDSMITH_SERVICE_ACCOUNT</username>
+            <password>\$CLOUDSMITH_MAVEN_TOKEN</password>
+        </server>
+    </servers>
+  </settings>
+EOF
+fi
