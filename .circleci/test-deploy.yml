@@ -60,9 +60,9 @@ jobs:
       - run:
           name: Check that maven environment variables have been set
           command: |
-            if [ -z $CLOUDSMITH_MAVEN_REGISTRY ]
+            if [ -z $CLOUDSMITH_MAVEN_REPOSITORY ]
             then
-              echo "Test failed: CLOUDSMITH_MAVEN_REGISTRY has not been set."
+              echo "Test failed: CLOUDSMITH_MAVEN_REPOSITORY has not been set."
               exit 1
             fi
             if [ -z "$CLOUDSMITH_REPOSITORY" ]
