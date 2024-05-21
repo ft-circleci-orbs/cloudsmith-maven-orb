@@ -78,8 +78,8 @@ jobs:
             echo "All tests passed."
       - run:
           name: cd into maven project directory and install package dependencies
-          command: cd ~/project/.circleci/simple-maven-package-test/maven-package-test && mvn install
-
+          command: mvn install -v
+          working_directory: ~/project/.circleci/simple-maven-package-test/maven-package-test
 workflows:
   test-deploy:
     jobs:
