@@ -12,13 +12,13 @@ usage:
         - checkout
         - cloudsmith-maven/configure_maven:
             repository: "your-repository-id"
-        # - run:
-        #   name: Install package dependencies
-        #   command: mvn install
-        #   working_directory: ~/project/.circleci/simple-maven-package-test/maven-package-test
         - run:
-            name: cd into maven project directory and install package dependencies
-            command: cd ~/project/.circleci/simple-maven-package-test/maven-package-test && mvn install
+            name: Install package dependencies
+            command: mvn install
+            working_directory: ~/project/.circleci/simple-maven-package-test/maven-package-test
+        # - run:
+        #     name: cd into maven project directory and install package dependencies
+        #     command: cd ~/project/.circleci/simple-maven-package-test/maven-package-test && mvn install
   workflows:
     main:
       jobs:
