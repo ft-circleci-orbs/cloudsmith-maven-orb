@@ -1,0 +1,12 @@
+description:
+  Generate temporary Cloudsmith credentials using OIDC and construct a maven registry URL string for a specific Cloudsmith
+  repository. On completion the command sets the CLOUDSMITH_MAVEN_REGISTRY environment variable for
+  use with maven. The registry url includes Cloudsmith authentication credentials generated using OIDC.
+parameters:
+  repository:
+    description: The identity/slug of the Cloudsmith repository
+    type: string
+steps:
+  - run:
+      name: Cloudsmith - Set environment variables
+      command: cloudsmith-maven/set_env_vars_for_maven
