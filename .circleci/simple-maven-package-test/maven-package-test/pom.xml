@@ -14,12 +14,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib -->
-    <dependency>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-stdlib</artifactId>
-        <version>2.0.0-RC2</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/com.google.truth/truth -->
     <dependency>
         <groupId>com.google.truth</groupId>
@@ -30,7 +24,7 @@
   </dependencies>
   <repositories>
     <repository>
-      <id>${env.CLOUDSMITH_ORGANISATION}-${env.CLOUDSMITH_REPOSITORY}</id>
+      <id>${env.REPO_ID}</id>
       <url>${env.CLOUDSMITH_MAVEN_REPOSITORY}</url>
       <releases>
         <enabled>true</enabled>
