@@ -1,0 +1,25 @@
+description: >
+  This example demonstrates how to 
+usage:
+  version: 2.1
+  orbs:
+    cloudsmith-maven: ft-circleci-orbs/cloudsmith-maven@0.0.1
+  jobs:
+    build:
+      docker:
+        - image: cimg/openjdk:21.0.2
+      steps:
+        - checkout
+        - cloudsmith-maven/configure_maven:
+            repository: "your-repository-id"
+        - run:
+            name: Copy over settings.xml file from GitHub using curl
+            command: |
+              curl -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3.raw" \
+              -o "$HOME/.m2/settings.xml" \
+              -L https://api.github.com/repos/$GITHUB_ORGANISATION/$GITHUB_REPOSITORY/contents/$PATH_TO_FILE
+  workflows:
+    main:
+      jobs:
+        - build
