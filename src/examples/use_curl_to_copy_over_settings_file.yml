@@ -1,8 +1,5 @@
 description: >
-  This example demonstrates how to use curl to copy over your settings.xml file from GitHub. 
-  You will need to create a Personal Access Token (classic), in order to access GitHub's API.
-  You will additionally need to authorise access to the relevant GitHub organisation.
-  You can store parameters in your CircleCI project as environment variables.
+  This example demonstrates how to use curl to copy over your settings.xml file from GitHub. You will need to create a Personal Access Token (classic).
 usage:
   version: 2.1
   orbs:
