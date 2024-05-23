@@ -10,4 +10,9 @@ then
   echo "export CLOUDSMITH_DOWNLOADS_DOMAIN=\"packages.ft.com\"" >> "$BASH_ENV"
 fi
 
+if [ -z "$CLOUDSMITH_REPOSITORY" ]
+then
+  echo "export CLOUDSMITH_REPOSITORY=\"financial-times-internal-releases\"" >> "$BASH_ENV"
+fi
+
 # echo "export CLOUDSMITH_MAVEN_UPLOAD_DOMAIN=\"python.cloudsmith.io\"" >> "$BASH_ENV"
