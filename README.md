@@ -19,6 +19,6 @@ These are used to authenticate with Cloudsmith using OIDC and can be found in th
 
 ## Documentation
 
-
+Please visit [this](https://circleci.com/developer/orbs/orb/ft-circleci-orbs/cloudsmith-maven) CircleCI Orb page for more information on implementation and examples.
 
 ---
