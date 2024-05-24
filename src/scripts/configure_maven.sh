@@ -12,13 +12,13 @@ then
   exit 1
 fi
 
-if [ -z "$CLOUDSMITH_MAVEN_REPOSITORY" ]
+if [ -z "$CLOUDSMITH_MAVEN_REPOSITORY_URL" ]
 then
-  echo "Unable to configure MAVEN. Env var CLOUDSMITH_MAVEN_REPOSITORY is not defined. Please run the set_env_vars_for_maven command first."
+  echo "Unable to configure MAVEN. Env var CLOUDSMITH_MAVEN_REPOSITORY_URL is not defined. Please run the set_env_vars_for_maven command first."
   exit 1
 fi
 
-echo "MAVEN has been configured to use Cloudsmith repository with $CLOUDSMITH_MAVEN_REPOSITORY."
+echo "MAVEN has been configured to use Cloudsmith repository with $CLOUDSMITH_MAVEN_REPOSITORY_URL."
 
 
 # Check for existence of .m2 & settings.xml and create them if they don't exist

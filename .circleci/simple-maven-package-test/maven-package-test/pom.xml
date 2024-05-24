@@ -25,7 +25,7 @@
   <repositories>
     <repository>
       <id>${env.REPO_ID}</id>
-      <url>${env.CLOUDSMITH_MAVEN_REPOSITORY}</url>
+      <url>${env.CLOUDSMITH_MAVEN_REPOSITORY_URL}</url>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>

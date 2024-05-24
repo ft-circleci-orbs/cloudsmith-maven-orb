@@ -32,9 +32,9 @@ jobs:
       - run:
           name: Check that maven environment variables have been set
           command: |
-            if [ -z $CLOUDSMITH_MAVEN_REPOSITORY ]
+            if [ -z $CLOUDSMITH_MAVEN_REPOSITORY_URL ]
             then
-              echo "Test failed: CLOUDSMITH_MAVEN_REPOSITORY has not been set."
+              echo "Test failed: CLOUDSMITH_MAVEN_REPOSITORY_URL has not been set."
               exit 1
             fi
             if [ -z "$CLOUDSMITH_REPOSITORY" ]
@@ -60,9 +60,9 @@ jobs:
       - run:
           name: Check that maven environment variables have been set
           command: |
-            if [ -z $CLOUDSMITH_MAVEN_REPOSITORY ]
+            if [ -z $CLOUDSMITH_MAVEN_REPOSITORY_URL ]
             then
-              echo "Test failed: CLOUDSMITH_MAVEN_REPOSITORY has not been set."
+              echo "Test failed: CLOUDSMITH_MAVEN_REPOSITORY_URL has not been set."
               exit 1
             fi
             if [ -z "$CLOUDSMITH_REPOSITORY" ]
