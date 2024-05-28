@@ -1,0 +1,22 @@
+description:
+  Generate temporary Cloudsmith credentials using OIDC and upload a java maven package to a Cloudsmith repository using the
+  Cloudsmith Native CLI.
+parameters:
+  repository:
+    description: The identity/slug of the Cloudsmith repository
+    type: string
+  dist_dir:
+    description: The distribution directory where package source distribution and wheel files are located
+    type: string
+    default: "dist"
+steps:
+  - run:
+      name: Cloudsmith - Configure defaults
+      command: <<include(scripts/configure_cloudsmith_defaults.sh)>>
+  - cloudsmith-oidc/authenticate_with_oidc
+  - run:
+      name: Cloudsmith - Upload java maven package file(s)
+      command: <<include(scripts/upload_package_using_cli.sh)>>
+      environment:
+        CLOUDSMITH_REPOSITORY: <<parameters.repository>>
+        DIST_DIR: <<parameters.dist_dir>>
