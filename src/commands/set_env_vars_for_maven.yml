@@ -16,4 +16,3 @@ steps:
       command: <<include(scripts/set_env_vars_for_maven.sh)>>
       environment:
         CLOUDSMITH_REPOSITORY: <<parameters.repository>>
-

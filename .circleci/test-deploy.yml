@@ -80,7 +80,6 @@ jobs:
           name: cd into maven project directory and install package dependencies
           command: mvn install
           working_directory: ~/project/.circleci/simple-maven-package-test/maven-package-test
-  
   test-upload_package_using_cli:
     docker:
       - image: cimg/openjdk:21.0.2
