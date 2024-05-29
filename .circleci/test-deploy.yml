@@ -81,19 +81,19 @@ jobs:
           command: mvn install
           working_directory: ~/project/.circleci/simple-maven-package-test/maven-package-test
   
-  # test-upload_package_using_cli:
-  #   docker:
-  #     - image: cimg/openjdk:21.0.2
-  #   resource_class: small
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Build source distribution
-  #         command: maven pack
-  #         working_directory: .circleci/simple-maven-package-test/maven-package-test
-  #     - cloudsmith-maven/upload_package_using_cli:
-  #         repository: "circleci-orb-testing"
-  #         dist_dir: .circleci/simple-maven-package-test/maven-package-test/
+  test-upload_package_using_cli:
+    docker:
+      - image: cimg/openjdk:21.0.2
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Build source distribution
+          command: mvn package
+          working_directory: .circleci/simple-maven-package-test/maven-package-test
+      - cloudsmith-maven/upload_package_using_cli:
+          repository: "circleci-orb-testing"
+          dist_dir: .circleci/simple-maven-package-test/maven-package-test/
 
   test-upload_package_native:
     docker:
@@ -120,6 +120,9 @@ workflows:
       - test-configure_maven_install_package:
           context: circleci-orb-publishing
           filters: *filters
+      - test-upload_package_using_cli:
+          context: circleci-orb-publishing
+          filters: *filters
       - test-upload_package_native:
           context: circleci-orb-publishing
           filters: *filters
@@ -135,6 +138,7 @@ workflows:
             - orb-tools/pack
             - test-set_env_vars_for_maven
             - test-configure_maven_install_package
+            - test-upload_package_using_cli
             - test-upload_package_native
           # Use a context to hold your publishing token.
           context: circleci-orb-publishing
