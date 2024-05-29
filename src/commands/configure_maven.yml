@@ -1,5 +1,5 @@
 description:
-  Generate temporary Cloudsmith credentials using OIDC
+  Generate temporary Cloudsmith credentials using OIDC and construct a maven registry URL string for a specific Cloudsmith repository. Checks for existence of .m2 and settings.xml maven configuration files and creates them with Cloudsmith authentication specifics if they do not exist.
 parameters:
   repository:
     description: The identity/slug of the Cloudsmith repository
