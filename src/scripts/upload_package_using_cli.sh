@@ -28,9 +28,7 @@ else
   exit 1
 fi
 
-# Note - dist_dir defined as: .circleci/simple-maven-package-test/maven-package-test
-
-# Test for a pom.xml file in .circleci/simple-maven-package-test/maven-package-test
+# Test for a pom.xml file in root directory of maven project
 LS_POM_CMD="ls -A ${DIST_DIR}/pom.xml"
 
 if [ -z "$($LS_POM_CMD)" ]
@@ -57,11 +55,10 @@ then
   exit 1
 fi
 
-# Upload package using native cli
-
 
 # Upload package using cli
 
+# Check for existence of a target directory and *.jar file in that directory
 LS_TARGET_CMD="ls -A ${DIST_DIR}/target"
 
 if [ -z "$($LS_TARGET_CMD)" ]
@@ -74,10 +71,9 @@ else
     [ -f "$filename" ] || continue
 
     echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
-
-    cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY" "target/$filename"
-    # cloudsmith push maven financial-times/financial-times-internal-releases your-package-1.2.3.jar
+    cloudsmith push maven $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY --pom-file pom.xml target/$filename
     echo ""
+    
     echo "Package upload and synchronisation completed OK."
   done
 fi
