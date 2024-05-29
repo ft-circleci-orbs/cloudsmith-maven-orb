@@ -14,7 +14,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.google.truth/truth -->
     <dependency>
         <groupId>com.google.truth</groupId>
         <artifactId>truth</artifactId>
