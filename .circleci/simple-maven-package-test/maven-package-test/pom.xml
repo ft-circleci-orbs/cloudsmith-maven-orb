@@ -24,7 +24,7 @@
   </dependencies>
   <repositories>
     <repository>
-      <id>${env.REPO_ID}</id>
+      <id>${env.CLOUDSMITH_REPO_ID}</id>
       <url>${env.CLOUDSMITH_MAVEN_REPOSITORY_URL}</url>
       <releases>
         <enabled>true</enabled>
