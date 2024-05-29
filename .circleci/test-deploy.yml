@@ -103,6 +103,7 @@ jobs:
       - checkout
       - cloudsmith-maven/configure_maven:
           repository: "circleci-orb-testing"
+          dist_dir: .circleci/simple-maven-package-test/maven-package-test
       - run:
           name: publish package
           command: mvn deploy
