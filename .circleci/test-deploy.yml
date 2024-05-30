@@ -103,6 +103,7 @@ jobs:
       - checkout
       - cloudsmith-maven/configure_maven:
           repository: "circleci-orb-testing"
+          # cloudsmith_service_account: "circleci-orb-testing"
       - run:
           name: build and upload package to Cloudsmith
           command: mvn deploy
