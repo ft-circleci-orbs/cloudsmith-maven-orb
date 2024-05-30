@@ -89,14 +89,12 @@ jobs:
       - checkout
       - run:
           name: Build maven package
-          command: mvn package
+          command: mvn package && pwd
           working_directory: .circleci/simple-maven-package-test/maven-package-test
       - cloudsmith-maven/upload_package_using_cli:
           repository: "circleci-orb-testing"
           dist_dir: .circleci/simple-maven-package-test/maven-package-test
-      - run:
-          name: Check current working directory
-          command: pwd
+      
 
   test-upload_package_native:
     docker:
