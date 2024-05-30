@@ -35,24 +35,30 @@ if [ -z "$($LS_POM_CMD)" ]
 then
   echo "$DIST_DIR does not a pom.xml file."
   exit 1
+else
+  echo "pom.xml file found."
 fi
 
 # Test for existence of src/main
-LS_MAIN_CMD="ls -A ${DIST_DIR}/main"
+LS_MAIN_CMD="ls -A ${DIST_DIR}/src/main"
 
 if [ -z "$($LS_MAIN_CMD)" ]
 then
   echo "$DIST_DIR does not contain a main directory."
   exit 1
+else
+  echo "main directory found."
 fi
 
 # Test for existence of src/test
-LS_TEST_CMD="ls -A ${DIST_DIR}/test"
+LS_TEST_CMD="ls -A ${DIST_DIR}/src/test"
 
 if [ -z "$($LS_TEST_CMD)" ]
 then
   echo "$DIST_DIR does not contain a test directory."
   exit 1
+else
+  echo "test directory found."
 fi
 
 
@@ -66,12 +72,15 @@ then
   echo "$DIST_DIR does not contain a target directory."
   exit 1
 else
-  for filename in "$DIST_DIR"/target*.jar
+  echo "target directory found."
+  cd $DIST_DIR
+  for filename in "$DIST_DIR"/target/*.jar
   do
+    echo $filename
     [ -f "$filename" ] || continue
 
     echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
-    cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file pom.xml target/"$filename"
+    cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file pom.xml "$filename"
     echo ""
 
     echo "Package upload and synchronisation completed OK."
