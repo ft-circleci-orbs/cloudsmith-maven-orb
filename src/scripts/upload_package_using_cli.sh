@@ -73,7 +73,7 @@ then
   exit 1
 else
   echo "target directory found."
-  cd $DIST_DIR
+  # cd $DIST_DIR
   for filename in "$DIST_DIR"/target/*.jar
   do
     echo $filename
