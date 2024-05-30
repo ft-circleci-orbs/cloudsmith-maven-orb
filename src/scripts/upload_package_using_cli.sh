@@ -80,7 +80,9 @@ else
     [ -f "$filename" ] || continue
 
     echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
+    
     cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file pom.xml "$filename"
+    
     echo ""
 
     echo "Package upload and synchronisation completed OK."
