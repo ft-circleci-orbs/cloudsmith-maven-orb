@@ -50,3 +50,5 @@ else
   </settings>
 EOF
 fi
+
+echo "MAVEN has been configured to use Cloudsmith repository with service account: $CLOUDSMITH_SERVICE_ACCOUNT."
