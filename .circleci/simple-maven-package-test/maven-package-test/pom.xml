@@ -35,4 +35,14 @@
       </snapshots>
     </repository>
   </repositories>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>${env.CLOUDSMITH_REPO_ID}</id>
+      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY}/</url>
+    </snapshotRepository>
+    <repository>
+      <id>${env.CLOUDSMITH_REPO_ID}</id>
+      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY}/</url>
+    </repository>
+  </distributionManagement>
 </project>
