@@ -75,6 +75,7 @@ else
   echo "target directory found."
   # cd $DIST_DIR
   for filename in "$DIST_DIR"/target/*.jar
+  echo file name is: "$filename"
   do
     echo "$filename"
     [ -f "$filename" ] || continue
