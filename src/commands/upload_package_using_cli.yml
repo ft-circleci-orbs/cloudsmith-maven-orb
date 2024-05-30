@@ -1,4 +1,4 @@
-description:
+description: >
   Generate temporary Cloudsmith credentials using OIDC and upload a java maven package to a Cloudsmith repository using the
   Cloudsmith Native CLI.
 parameters:
