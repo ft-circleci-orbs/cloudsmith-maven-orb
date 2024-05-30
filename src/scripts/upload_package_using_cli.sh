@@ -74,20 +74,23 @@ then
 else
   echo "target directory found."
   # cd $DIST_DIR
-  for filename in "$DIST_DIR"/target/*.jar
-    echo "file name is: $filename"
-  do
-    echo "$filename"
-    [ -f "$filename" ] || continue
+  echo "getting file name\n"
+  pwd
+  echo ""
+  for filename in "$DIST_DIR"/target/*.jar;
+    do
+      echo "file name is: $filename"
+      [ -f "$filename" ] || continue
 
-    echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
-    
-    cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file pom.xml "$filename"
-    
-    echo ""
+      echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
+      echo "current working directory is:" && pwd
+      echo ""
+      cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
+      
+      echo ""
 
-    echo "Package upload and synchronisation completed OK."
-  done
+      echo "Package upload and synchronisation completed OK."
+    done
 fi
 
 
