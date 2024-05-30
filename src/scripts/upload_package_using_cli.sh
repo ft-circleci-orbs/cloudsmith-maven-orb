@@ -74,7 +74,7 @@ then
 else
   echo "target directory found."
   # cd $DIST_DIR
-  echo "getting file name\n"
+  printf "getting file name"
   pwd
   echo ""
   for filename in "$DIST_DIR"/target/*.jar;
