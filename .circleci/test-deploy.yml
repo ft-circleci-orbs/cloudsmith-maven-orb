@@ -94,7 +94,6 @@ jobs:
       - cloudsmith-maven/upload_package_using_cli:
           repository: "financial-times-internal-releases"
           dist_dir: .circleci/simple-maven-package-test/maven-package-test
-      
 
   test-upload_package_native:
     docker:
