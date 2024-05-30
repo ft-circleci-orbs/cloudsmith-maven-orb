@@ -76,7 +76,7 @@ else
   # cd $DIST_DIR
   for filename in "$DIST_DIR"/target/*.jar
   do
-    echo $filename
+    echo "$filename"
     [ -f "$filename" ] || continue
 
     echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
