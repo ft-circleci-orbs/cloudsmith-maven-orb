@@ -73,7 +73,6 @@ then
   exit 1
 else
   echo "target directory found."
-  # cd $DIST_DIR
   printf "getting file name"
   pwd
   echo ""
@@ -84,7 +83,10 @@ else
 
       echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
       echo "current working directory is:" && pwd
+      echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
+      echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
       echo ""
+      printf 'cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"'
       cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
       
       echo ""
@@ -92,5 +94,6 @@ else
       echo "Package upload and synchronisation completed OK."
     done
 fi
+
 
 
