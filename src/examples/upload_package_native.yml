@@ -1,0 +1,23 @@
+description: >
+  Upload an java maven package to Cloudsmith using mvn deploy.
+usage:
+  version: 2.1
+  orbs:
+    cloudsmith-maven: ft-circleci-orbs/cloudsmith-maven@0.0.1
+  jobs:
+    build:
+      docker:
+        - image: cimg/openjdk:21.0.2
+      steps:
+        - checkout
+        - cloudsmith-maven/configure_maven:
+            repository: "financial-times-internal-releases"
+        - run:
+            name: build and upload package to Cloudsmith
+            command: mvn deploy
+            working_directory: .circleci/simple-maven-package-test/maven-package-test
+
+  workflows:
+    main:
+      jobs:
+        - build
