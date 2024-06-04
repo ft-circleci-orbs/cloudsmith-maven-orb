@@ -12,11 +12,8 @@ parameters:
 steps:
   - run:
       name: Cloudsmith - Configure defaults
-      command: <<include(scripts/configure_cloudsmith_defaults.sh)>>
+      command: <<include(scripts/configure_maven.sh)>>
   - cloudsmith-oidc/authenticate_with_oidc
-  - run:
-      name: Cloudsmith - Set Environment Variables for Maven
-      command: <<include(scripts/set_env_vars_for_maven.sh)>>
   - run:
       name: Check and install python3 and pip
       command: |
