@@ -5,6 +5,9 @@ parameters:
   repository:
     description: The identity/slug of the Cloudsmith repository
     type: string
+  cloudsmith_organisation:
+    description: The organisation associated with the Cloudsmith repository
+    type: string
   dist_dir:
     description: The distribution directory where package source distribution files are located
     type: string
