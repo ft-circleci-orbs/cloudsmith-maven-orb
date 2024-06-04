@@ -18,12 +18,6 @@ steps:
       command: <<include(scripts/configure_cloudsmith_defaults.sh)>>
   - cloudsmith-oidc/authenticate_with_oidc
   - run:
-      name: Cloudsmith - Set Environment Variables for Maven
-      command: <<include(scripts/set_env_vars_for_maven.sh)>>
-  - run:
-      name: Cloudsmith - Configure Maven
-      command: <<include(scripts/configure_maven.sh)>>
-  - run:
       name: Check and install python3 and pip
       command: |
         if ! command -v pip3 &> /dev/null
