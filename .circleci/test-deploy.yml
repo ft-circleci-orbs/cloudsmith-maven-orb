@@ -114,15 +114,15 @@ workflows:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
-      # - test-set_env_vars_for_maven:
-      #     context: circleci-orb-publishing
-      #     filters: *filters
-      # - test-configure_maven_install_package:
-      #     context: circleci-orb-publishing
-      #     filters: *filters
-      # - test-upload_package_using_cli:
-      #     context: circleci-orb-publishing
-      #     filters: *filters
+      - test-set_env_vars_for_maven:
+          context: circleci-orb-publishing
+          filters: *filters
+      - test-configure_maven_install_package:
+          context: circleci-orb-publishing
+          filters: *filters
+      - test-upload_package_using_cli:
+          context: circleci-orb-publishing
+          filters: *filters
       - test-upload_package_native:
           context: circleci-orb-publishing
           filters: *filters
@@ -136,9 +136,9 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-            # - test-set_env_vars_for_maven
-            # - test-configure_maven_install_package
-            # - test-upload_package_using_cli
+            - test-set_env_vars_for_maven
+            - test-configure_maven_install_package
+            - test-upload_package_using_cli
             - test-upload_package_native
           # Use a context to hold your publishing token.
           context: circleci-orb-publishing
