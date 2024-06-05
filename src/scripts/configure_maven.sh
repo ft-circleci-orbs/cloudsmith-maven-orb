@@ -52,4 +52,6 @@ else
 EOF
 fi
 
+cat "${HOME}/.m2/settings.xml"
+
 echo "MAVEN has been configured to use Cloudsmith repository with service account: $CLOUDSMITH_SERVICE_ACCOUNT."

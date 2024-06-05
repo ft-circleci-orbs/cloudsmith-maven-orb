@@ -37,3 +37,5 @@ echo "export CLOUDSMITH_REPO_ID=\"$CLOUDSMITH_REPO_ID\"" >> "$BASH_ENV"
 echo "The following environment variables have been exported. Note, the OIDC token has been masked below."
 echo ""
 echo "CLOUDSMITH_MAVEN_REPOSITORY_URL=https://$CLOUDSMITH_MAVEN_DOWNLOADS_DOMAIN/basic/$CLOUDSMITH_REPOSITORY/maven/"
+
+echo "$CLOUDSMITH_REPOSITORY"
