@@ -86,8 +86,7 @@ else
       echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
       echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
       echo ""
-      printf 'cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"'
-      cloudsmith push maven "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
+      cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
       echo ""
 
       echo "Package upload and synchronisation completed OK."
