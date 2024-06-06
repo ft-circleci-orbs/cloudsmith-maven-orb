@@ -15,7 +15,7 @@ usage:
         - run:
             name: build and upload package to Cloudsmith
             command: mvn deploy
-            working_directory: .circleci/simple-maven-package-test/maven-package-test
+            working_directory: ~/project/.circleci/path-to-your-maven-project
 
   workflows:
     main:

@@ -13,10 +13,10 @@ usage:
         - run:
             name: Build maven package
             command: mvn package
-            working_directory: .circleci/simple-maven-package-test/maven-package-test
+            working_directory: ~/project/.circleci/path-to-your-maven-project
         - cloudsmith-maven/upload_package_using_cli:
             repository: "financial-times-internal-releases"
-            dist_dir: .circleci/simple-maven-package-test/maven-package-test
+            dist_dir: ~/project/.circleci/path-to-your-maven-project
 
   workflows:
     main:
