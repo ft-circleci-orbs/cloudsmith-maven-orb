@@ -18,6 +18,7 @@ usage:
         - run:
             name: Cloudsmith - Set environment variables
             command: cloudsmith-maven/set_env_vars_for_maven
+            repository: "your-repository-id"
   workflows:
     main:
       jobs:
