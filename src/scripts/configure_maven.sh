@@ -39,7 +39,7 @@ else
                         https://maven.apache.org/xsd/settings-1.0.0.xsd">
   <servers>
       <server>
-          <id>\${env.CLOUDSMITH_REPO_ID}</id>
+          <id>\${env.CLOUDSMITH_MAVEN_ID}</id>
           <username>\${env.CLOUDSMITH_SERVICE_ACCOUNT}</username>
           <password>\${env.CLOUDSMITH_MAVEN_TOKEN}</password>
       </server>
