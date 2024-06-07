@@ -73,8 +73,6 @@ then
   exit 1
 else
   echo "target directory found."
-  printf "getting file name"
-  pwd
   echo ""
   for filename in "$DIST_DIR"/target/*.jar;
     do
@@ -92,6 +90,3 @@ else
       echo "Package upload and synchronisation completed OK."
     done
 fi
-
-
-
