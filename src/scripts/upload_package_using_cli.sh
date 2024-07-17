@@ -83,7 +83,7 @@ else
     do
       echo "file name is: $filename"
       [ -f "$filename" ] || continue
-      if [ "$RELEASE_TYPE" -eq "stable" ];
+      if [ "$RELEASE_TYPE" = "stable" ];
       then
         echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
         echo "current working directory is:" && pwd
@@ -91,7 +91,7 @@ else
         echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
         echo ""
         cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
-      elif [ "$RELEASE_TYPE" -eq "unstable" ];
+      elif [ "$RELEASE_TYPE" = "unstable" ];
       then
         echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY_UNSTABLE ..."
         echo "current working directory is:" && pwd
@@ -99,6 +99,9 @@ else
         echo "CLOUDSMITH_REPOSITORY_UNSTABLE: " && echo "$CLOUDSMITH_REPOSITORY_UNSTABLE"
         echo ""
         cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY_UNSTABLE" --pom-file "$DIST_DIR"/pom.xml "$filename"
+      else
+        echo "Invalid release type. Please set RELEASE_TYPE to either 'stable' or 'unstable'."
+        exit 1
       fi
       echo ""
 
