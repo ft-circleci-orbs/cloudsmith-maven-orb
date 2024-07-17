@@ -28,7 +28,8 @@ jobs:
     steps:
       - checkout
       - cloudsmith-maven/set_env_vars_for_maven:
-          repository: "circleci-orb-testing"
+          repository: "financial-times-internal-releases"
+          repository_unstable: "financial-times-internal-unstable"
       - run:
           name: Check that maven environment variables have been set
           command: |
@@ -61,7 +62,8 @@ jobs:
     steps:
       - checkout
       - cloudsmith-maven/configure_maven:
-          repository: "circleci-orb-testing"
+          repository: "financial-times-internal-releases"
+          repository_unstable: "financial-times-internal-unstable"
       - run:
           name: Check that maven environment variables have been set
           command: |
