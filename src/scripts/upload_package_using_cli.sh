@@ -83,18 +83,21 @@ else
     do
       echo "file name is: $filename"
       [ -f "$filename" ] || continue
-
-      echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
-      echo "current working directory is:" && pwd
-      echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
-      echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
-      echo "CLOUDSMITH_REPOSITORY_UNSTABLE: " && echo "$CLOUDSMITH_REPOSITORY_UNSTABLE"
-      echo ""
       if release-type == "stable"
       then
+        echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
+        echo "current working directory is:" && pwd
+        echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
+        echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
+        echo ""
         cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
-      else if release-type == "unstable"
+      elif release-type == "unstable"
       then
+        echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY_UNSTABLE ..."
+        echo "current working directory is:" && pwd
+        echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
+        echo "CLOUDSMITH_REPOSITORY_UNSTABLE: " && echo "$CLOUDSMITH_REPOSITORY_UNSTABLE"
+        echo ""
         cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY_UNSTABLE" --pom-file "$DIST_DIR"/pom.xml "$filename"
       fi
       echo ""
