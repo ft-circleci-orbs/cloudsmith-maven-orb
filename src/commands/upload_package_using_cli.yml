@@ -15,6 +15,10 @@ parameters:
     description: The distribution directory where package source distribution files are located
     type: string
     default: "dist"
+  release_type:
+    description: The release type of the package (stable or unstable)
+    type: string
+    default: "stable"
 steps:
   - run:
       name: Cloudsmith - Configure defaults
