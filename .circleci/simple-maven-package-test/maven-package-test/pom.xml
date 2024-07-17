@@ -44,7 +44,7 @@
   <distributionManagement>
     <snapshotRepository>
       <id>${env.CLOUDSMITH_MAVEN_ID}</id>
-      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY}/</url>
+      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY_UNSTABLE}/</url>
     </snapshotRepository>
     <repository>
       <id>${env.CLOUDSMITH_MAVEN_ID}</id>

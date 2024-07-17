@@ -10,6 +10,7 @@ parameters:
 steps:
   - set_env_vars_for_maven:
       repository: <<parameters.repository>>
+      repository_unstable: <<parameters.repository_unstable>>
   - run:
       name: Cloudsmith - Configure cloudsmith maven
       command: <<include(scripts/configure_maven.sh)>>
