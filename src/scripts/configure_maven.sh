@@ -18,6 +18,12 @@ then
   exit 1
 fi
 
+if [ -z "$CLOUDSMITH_MAVEN_REPOSITORY_UNSTABLE_URL" ]
+then
+  echo "Unable to configure MAVEN. Env var CLOUDSMITH_MAVEN_REPOSITORY_UNSTABLE_URL is not defined. Please run the set_env_vars_for_maven command first."
+  exit 1
+fi
+
 # Check for existence of .m2 and create it if it doesn't exist
 if [ -d "${HOME}/.m2" ]
 then
