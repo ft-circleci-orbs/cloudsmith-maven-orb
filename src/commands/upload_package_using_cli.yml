@@ -44,6 +44,6 @@ steps:
       command: <<include(scripts/upload_package_using_cli.sh)>>
       environment:
         CLOUDSMITH_REPOSITORY: <<parameters.repository>>
-        CLOUDSMITH_REPOSITORY_UNSTABLE: <<parameters.repository-unstable>>
+        CLOUDSMITH_REPOSITORY_UNSTABLE: <<parameters.repository_unstable>>
         CLOUDSMITH_ORGANISATION: <<parameters.cloudsmith_organisation>>
         DIST_DIR: <<parameters.dist_dir>>
