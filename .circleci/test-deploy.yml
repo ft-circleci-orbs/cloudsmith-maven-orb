@@ -65,7 +65,6 @@ jobs:
       - cloudsmith-maven/configure_maven:
           repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
-          release_type: "unstable"
       - run:
           name: Check that maven environment variables have been set
           command: |
