@@ -30,6 +30,7 @@ jobs:
       - cloudsmith-maven/set_env_vars_for_maven:
           repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
+          release_type: "unstable"
       - run:
           name: Check that maven environment variables have been set
           command: |
@@ -64,6 +65,7 @@ jobs:
       - cloudsmith-maven/configure_maven:
           repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
+          release_type: "unstable"
       - run:
           name: Check that maven environment variables have been set
           command: |
@@ -114,6 +116,7 @@ jobs:
       - cloudsmith-maven/configure_maven:
           repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
+          release_type: "unstable"
       - run:
           name: build and upload package to Cloudsmith
           command: mvn deploy
