@@ -83,7 +83,7 @@ else
     do
       echo "file name is: $filename"
       [ -f "$filename" ] || continue
-      if release-type == "stable"
+      if [ "$RELEASE_TYPE" -eq "stable" ];
       then
         echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
         echo "current working directory is:" && pwd
@@ -91,7 +91,7 @@ else
         echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
         echo ""
         cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
-      elif release-type == "unstable"
+      elif [ "$RELEASE_TYPE" -eq "unstable" ];
       then
         echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY_UNSTABLE ..."
         echo "current working directory is:" && pwd
