@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - cloudsmith-maven/set_env_vars_for_maven:
-          repository: "financial-times-internal-releases"
+          repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
       - run:
           name: Check that maven environment variables have been set
@@ -62,7 +62,7 @@ jobs:
     steps:
       - checkout
       - cloudsmith-maven/configure_maven:
-          repository: "financial-times-internal-releases"
+          repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
       - run:
           name: Check that maven environment variables have been set
@@ -100,7 +100,7 @@ jobs:
           working_directory: .circleci/simple-maven-package-test/maven-package-test
       - cloudsmith-maven/upload_package_using_cli:
           release_type: "stable"
-          repository: "financial-times-internal-releases"
+          repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
           dist_dir: .circleci/simple-maven-package-test/maven-package-test
           cloudsmith_organisation: "financial-times"
@@ -112,7 +112,7 @@ jobs:
     steps:
       - checkout
       - cloudsmith-maven/configure_maven:
-          repository: "financial-times-internal-releases"
+          repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
       - run:
           name: build and upload package to Cloudsmith
