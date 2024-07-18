@@ -17,6 +17,10 @@ usage:
         repository_unstable:
           description: The identity/slug of the Cloudsmith repository for unstable artifacts
           type: string
+        release_type:
+          description: The type of release to upload (e.g. stable, unstable)
+          type: string
+          default: "unstable"
       steps:
         - run:
             name: Cloudsmith - Set environment variables
