@@ -20,7 +20,7 @@ usage:
         release_type:
           description: The type of release to upload (e.g. stable, unstable)
           type: string
-          default: "unstable"
+          default: "release"
       steps:
         - run:
             name: Cloudsmith - Set environment variables

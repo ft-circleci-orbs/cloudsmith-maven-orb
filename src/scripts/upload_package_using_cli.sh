@@ -14,9 +14,9 @@ then
   echo "Unable to upload package. Env var CLOUDSMITH_REPOSITORY is not defined."
   exit 1
 fi
-if [ -z "$CLOUDSMITH_REPOSITORY_UNSTABLE" ]
+if [ -z "$CLOUDSMITH_REPOSITORY_SNAPSHOTS" ]
 then
-  echo "Unable to upload package. Env var CLOUDSMITH_REPOSITORY_UNSTABLE is not defined."
+  echo "Unable to upload package. Env var CLOUDSMITH_REPOSITORY_SNAPSHOTS is not defined."
   exit 1
 fi
 if [ -z "$CLOUDSMITH_OIDC_TOKEN" ]
@@ -83,7 +83,7 @@ else
     do
       echo "file name is: $filename"
       [ -f "$filename" ] || continue
-      if [ "$RELEASE_TYPE" = "stable" ];
+      if [ "$RELEASE_TYPE" = "release" ];
       then
         echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
         echo "current working directory is:" && pwd
@@ -91,16 +91,16 @@ else
         echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
         echo ""
         cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
-      elif [ "$RELEASE_TYPE" = "unstable" ];
+      elif [ "$RELEASE_TYPE" = "release" ];
       then
-        echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY_UNSTABLE ..."
+        echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY_SNAPSHOTS ..."
         echo "current working directory is:" && pwd
         echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
-        echo "CLOUDSMITH_REPOSITORY_UNSTABLE: " && echo "$CLOUDSMITH_REPOSITORY_UNSTABLE"
+        echo "CLOUDSMITH_REPOSITORY_SNAPSHOTS: " && echo "$CLOUDSMITH_REPOSITORY_SNAPSHOTS"
         echo ""
-        cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY_UNSTABLE" --pom-file "$DIST_DIR"/pom.xml "$filename"
+        cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY_SNAPSHOTS" --pom-file "$DIST_DIR"/pom.xml "$filename"
       else
-        echo "Invalid release type. Please set RELEASE_TYPE to either 'stable' or 'unstable'."
+        echo "Invalid release type. Please set RELEASE_TYPE to either 'release' or 'snapshot'."
         exit 1
       fi
       echo ""

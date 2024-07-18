@@ -12,7 +12,7 @@ parameters:
   release_type:
     description: The type of release to upload (e.g. stable, unstable)
     type: string
-    default: "unstable"
+    default: "release"
 steps:
   - run:
       name: Cloudsmith - Configure defaults
@@ -23,6 +23,6 @@ steps:
       command: <<include(scripts/set_env_vars_for_maven.sh)>>
       environment:
         CLOUDSMITH_REPOSITORY: <<parameters.repository>>
-        CLOUDSMITH_REPOSITORY_UNSTABLE: <<parameters.repository_unstable>>
+        CLOUDSMITH_REPOSITORY_SNAPSHOTS: <<parameters.repository_unstable>>
         RELEASE_TYPE: <<parameters.release_type>>
 

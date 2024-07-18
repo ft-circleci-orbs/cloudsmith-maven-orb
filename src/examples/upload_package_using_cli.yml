@@ -18,7 +18,7 @@ usage:
             repository: "financial-times-internal-releases"
             repository_unstable: "financial-times-internal-unstable"
             dist_dir: ~/project/.circleci/path-to-your-maven-project
-            release_type: "stable"
+            release_type: "release"
             cloudsmith_organisation: "financial-times"
 
   workflows:
