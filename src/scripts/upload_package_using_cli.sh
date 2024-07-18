@@ -91,7 +91,7 @@ else
         echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
         echo ""
         cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
-      elif [ "$RELEASE_TYPE" = "release" ];
+      elif [ "$RELEASE_TYPE" = "snapshot" ];
       then
         echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY_SNAPSHOTS ..."
         echo "current working directory is:" && pwd
