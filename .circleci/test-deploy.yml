@@ -99,7 +99,7 @@ jobs:
           command: mvn package
           working_directory: .circleci/simple-maven-package-test/maven-package-test
       - cloudsmith-maven/upload_package_using_cli:
-          release_type: "unstable"
+          release_type: "stable"
           repository: "circleci-orb-testing"
           repository_unstable: "financial-times-internal-unstable"
           dist_dir: .circleci/simple-maven-package-test/maven-package-test
