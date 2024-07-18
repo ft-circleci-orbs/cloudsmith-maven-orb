@@ -54,3 +54,4 @@ steps:
         CLOUDSMITH_REPOSITORY_UNSTABLE: <<parameters.repository_unstable>>
         CLOUDSMITH_ORGANISATION: <<parameters.cloudsmith_organisation>>
         DIST_DIR: <<parameters.dist_dir>>
+        RELEASE_TYPE: <<parameters.release_type>>
