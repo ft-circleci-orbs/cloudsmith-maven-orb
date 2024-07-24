@@ -44,11 +44,11 @@
   <distributionManagement>
     <snapshotRepository>
       <id>${env.CLOUDSMITH_MAVEN_ID}</id>
-      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY_SNAPSHOTS}/</url>
+      <url>${env.CLOUDSMITH_MAVEN_REPOSITORY_SNAPSHOT_URL}</url>
     </snapshotRepository>
     <repository>
       <id>${env.CLOUDSMITH_MAVEN_ID}</id>
-      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY}/</url>
+      <url>${env.CLOUDSMITH_MAVEN_REPOSITORY_URL}</url>
     </repository>
   </distributionManagement>
 </project>
