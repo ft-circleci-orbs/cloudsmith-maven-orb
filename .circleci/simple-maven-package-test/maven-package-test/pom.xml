@@ -4,7 +4,7 @@
   <groupId>com.mycompany.app</groupId>
   <artifactId>maven-package-test</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.3</version>
   <name>maven-package-test</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -44,7 +44,7 @@
   <distributionManagement>
     <snapshotRepository>
       <id>${env.CLOUDSMITH_MAVEN_ID}</id>
-      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY}/</url>
+      <url>https://maven.packages.ft.com/${env.CLOUDSMITH_REPOSITORY_SNAPSHOTS}/</url>
     </snapshotRepository>
     <repository>
       <id>${env.CLOUDSMITH_MAVEN_ID}</id>

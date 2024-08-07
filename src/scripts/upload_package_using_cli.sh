@@ -14,6 +14,11 @@ then
   echo "Unable to upload package. Env var CLOUDSMITH_REPOSITORY is not defined."
   exit 1
 fi
+if [ -z "$CLOUDSMITH_REPOSITORY_SNAPSHOTS" ]
+then
+  echo "Unable to upload package. Env var CLOUDSMITH_REPOSITORY_SNAPSHOTS is not defined."
+  exit 1
+fi
 if [ -z "$CLOUDSMITH_OIDC_TOKEN" ]
 then
   echo "Unable to upload package. Env var CLOUDSMITH_OIDC_TOKEN is not defined."
@@ -78,13 +83,26 @@ else
     do
       echo "file name is: $filename"
       [ -f "$filename" ] || continue
-
-      echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
-      echo "current working directory is:" && pwd
-      echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
-      echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
-      echo ""
-      cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
+      if [ "$RELEASE_TYPE" = "release" ];
+      then
+        echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY ..."
+        echo "current working directory is:" && pwd
+        echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
+        echo "CLOUDSMITH_REPOSITORY: " && echo "$CLOUDSMITH_REPOSITORY"
+        echo ""
+        cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY" --pom-file "$DIST_DIR"/pom.xml "$filename"
+      elif [ "$RELEASE_TYPE" = "snapshot" ];
+      then
+        echo "Uploading java maven package $filename to Cloudsmith repository $CLOUDSMITH_ORGANISATION/$CLOUDSMITH_REPOSITORY_SNAPSHOTS ..."
+        echo "current working directory is:" && pwd
+        echo "CLOUDSMITH_ORGANISATION: " && echo "$CLOUDSMITH_ORGANISATION"
+        echo "CLOUDSMITH_REPOSITORY_SNAPSHOTS: " && echo "$CLOUDSMITH_REPOSITORY_SNAPSHOTS"
+        echo ""
+        cloudsmith push maven --verbose --api-key "$CLOUDSMITH_OIDC_TOKEN" "$CLOUDSMITH_ORGANISATION"/"$CLOUDSMITH_REPOSITORY_SNAPSHOTS" --pom-file "$DIST_DIR"/pom.xml "$filename"
+      else
+        echo "Invalid release type. Please set RELEASE_TYPE to either 'release' or 'snapshot'."
+        exit 1
+      fi
       echo ""
 
       echo "Package upload and synchronisation completed OK."

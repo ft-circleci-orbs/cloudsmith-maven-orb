@@ -29,6 +29,7 @@ jobs:
       - checkout
       - cloudsmith-maven/set_env_vars_for_maven:
           repository: "circleci-orb-testing"
+          repository_snapshots: "financial-times-internal-unstable"
       - run:
           name: Check that maven environment variables have been set
           command: |
@@ -40,6 +41,11 @@ jobs:
             if [ -z "$CLOUDSMITH_REPOSITORY" ]
             then
               echo "Unable to configure MAVEN. Env var CLOUDSMITH_REPOSITORY is not defined. Please run the set_env_vars_for_maven command first."
+              exit 1
+            fi
+            if [ -z "$CLOUDSMITH_REPOSITORY_SNAPSHOTS" ]
+            then
+              echo "Unable to configure MAVEN. Env var CLOUDSMITH_REPOSITORY_SNAPSHOTS is not defined. Please run the set_env_vars_for_maven command first."
               exit 1
             fi
             if [ -z "$CLOUDSMITH_OIDC_TOKEN" ]
@@ -57,6 +63,7 @@ jobs:
       - checkout
       - cloudsmith-maven/configure_maven:
           repository: "circleci-orb-testing"
+          repository_snapshots: "financial-times-internal-unstable"
       - run:
           name: Check that maven environment variables have been set
           command: |
@@ -92,7 +99,9 @@ jobs:
           command: mvn package
           working_directory: .circleci/simple-maven-package-test/maven-package-test
       - cloudsmith-maven/upload_package_using_cli:
+          release_type: "snapshot"
           repository: "circleci-orb-testing"
+          repository_snapshots: "financial-times-internal-unstable"
           dist_dir: .circleci/simple-maven-package-test/maven-package-test
           cloudsmith_organisation: "financial-times"
 
@@ -104,6 +113,7 @@ jobs:
       - checkout
       - cloudsmith-maven/configure_maven:
           repository: "circleci-orb-testing"
+          repository_snapshots: "financial-times-internal-unstable"
       - run:
           name: build and upload package to Cloudsmith
           command: mvn deploy
@@ -132,7 +142,7 @@ workflows:
       - orb-tools/publish:
           orb_name: ft-circleci-orbs/cloudsmith-maven
           vcs_type: << pipeline.project.type >>
-          pub_type: production
+          pub_type: production # switch to production for publish updated release of orb
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack

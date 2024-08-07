@@ -12,6 +12,7 @@ usage:
         - checkout
         - cloudsmith-maven/configure_maven:
             repository: "financial-times-internal-releases"
+            repository_snapshots: "financial-times-internal-unstable"
         - run:
             name: build and upload package to Cloudsmith
             command: mvn deploy
