@@ -16,7 +16,7 @@ parameters:
     type: string
     default: "dist"
   release_type:
-    description: The release type of the package (stable or unstable)
+    description: The release type of the package (release or snapshot)
     type: string
     default: "release"
 steps:
