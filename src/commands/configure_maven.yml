@@ -13,7 +13,7 @@ parameters:
 steps:
   - set_env_vars_for_maven:
       repository: <<parameters.repository>>
-      repository_snapshots: <<parameters.repository_>>
+      repository_snapshots: <<parameters.repository_snapshot>>
   - run:
       name: Cloudsmith - Configure cloudsmith maven
       command: <<include(scripts/configure_maven.sh)>>
