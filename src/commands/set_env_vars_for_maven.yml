@@ -7,7 +7,7 @@ parameters:
     description: The identity/slug of the Cloudsmith repository
     type: string
   repository_snapshots:
-    description: The identity/slug of the Cloudsmith repository for unstable artifacts
+    description: The identity/slug of the Cloudsmith repository for snapshots
     type: string
   release_type:
     description: The type of release to upload (e.g. release, snapshot)

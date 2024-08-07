@@ -6,7 +6,7 @@ parameters:
     description: The identity/slug of the Cloudsmith repository
     type: string
   repository_snapshots:
-    description: The identity/slug of the Cloudsmith repository for unstable artifacts
+    description: The identity/slug of the Cloudsmith repository for snapshots
     type: string
   cloudsmith_organisation:
     description: The organisation associated with the Cloudsmith repository
