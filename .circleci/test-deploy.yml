@@ -142,7 +142,7 @@ workflows:
       - orb-tools/publish:
           orb_name: ft-circleci-orbs/cloudsmith-maven
           vcs_type: << pipeline.project.type >>
-          pub_type: dev # switch to production for publish updated release of orb
+          pub_type: production # switch to production for publish updated release of orb
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
