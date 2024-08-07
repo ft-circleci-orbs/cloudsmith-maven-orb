@@ -6,11 +6,11 @@ parameters:
   repository:
     description: The identity/slug of the Cloudsmith repository
     type: string
-  repository_unstable:
+  repository_snapshots:
     description: The identity/slug of the Cloudsmith repository for unstable artifacts
     type: string
   release_type:
-    description: The type of release to upload (e.g. stable, unstable)
+    description: The type of release to upload (e.g. release, snapshot)
     type: string
     default: "release"
 steps:
@@ -23,6 +23,5 @@ steps:
       command: <<include(scripts/set_env_vars_for_maven.sh)>>
       environment:
         CLOUDSMITH_REPOSITORY: <<parameters.repository>>
-        CLOUDSMITH_REPOSITORY_SNAPSHOTS: <<parameters.repository_unstable>>
+        CLOUDSMITH_REPOSITORY_SNAPSHOTS: <<parameters.repository_snapshots>>
         RELEASE_TYPE: <<parameters.release_type>>
-
