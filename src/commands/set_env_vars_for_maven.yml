@@ -10,7 +10,7 @@ parameters:
     description: The identity/slug of the Cloudsmith repository for unstable artifacts
     type: string
   release_type:
-    description: The type of release to upload (e.g. stable, unstable)
+    description: The type of release to upload (e.g. release, snapshot)
     type: string
     default: "release"
 steps:
