@@ -4,7 +4,7 @@
   <groupId>com.mycompany.app</groupId>
   <artifactId>maven-package-test</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.4</version>
+  <version>1.0.3</version>
   <name>maven-package-test</name>
   <url>http://maven.apache.org</url>
   <dependencies>
