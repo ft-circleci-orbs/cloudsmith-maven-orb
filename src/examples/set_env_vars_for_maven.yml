@@ -5,7 +5,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    cloudsmith-maven: ft-circleci-orbs/cloudsmith-maven@0.0.2
+    cloudsmith-maven: ft-circleci-orbs/cloudsmith-maven@1.0.2
   jobs:
     build:
       docker:
